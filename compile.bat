@@ -1,0 +1,1 @@
+g++ src/*.cpp -o bin/main.exe -Iinclude -Llib -lglfw3 -lglad -lwinmm -lgdi32 -lopengl32 -lpthread -static -static-libgcc -static-libstdc++

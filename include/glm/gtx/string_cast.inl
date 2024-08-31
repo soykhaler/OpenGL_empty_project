@@ -18,29 +18,24 @@ namespace detail
 		typedef double value_type;
 	};
 
-	GLM_FUNC_QUALIFIER std::string format(const char* message, ...) {
+	GLM_FUNC_QUALIFIER std::string format(const char* msg, ...)
+	{
 		std::size_t const STRING_BUFFER(4096);
-
-		assert(message != NULL);
-		assert(strlen(message) >= 0 && strlen(message) < STRING_BUFFER);
-
-		char buffer[STRING_BUFFER];
+		char text[STRING_BUFFER];
 		va_list list;
 
-#if GLM_COMPILER & GLM_COMPILER_CLANG
-#	pragma clang diagnostic push
-#	pragma clang diagnostic ignored "-Wformat-nonliteral"
-#endif
+		if(msg == GLM_NULLPTR)
+			return std::string();
 
-		va_start(list, message);
-		vsnprintf(buffer, STRING_BUFFER, message, list);
+		va_start(list, msg);
+#		if (GLM_COMPILER & GLM_COMPILER_VC)
+			vsprintf_s(text, STRING_BUFFER, msg, list);
+#		else//
+			std::vsprintf(text, msg, list);
+#		endif//
 		va_end(list);
 
-#if GLM_COMPILER & GLM_COMPILER_CLANG
-#	pragma clang diagnostic pop
-#endif
-
-		return buffer;
+		return std::string(text);
 	}
 
 	static const char* LabelTrue = "true";

@@ -3,10 +3,10 @@
 ///
 /// @see core (dependence)
 ///
-/// @defgroup gtx_extended_min_max GLM_GTX_extended_min_max
+/// @defgroup gtx_extended_min_max GLM_GTX_extented_min_max
 /// @ingroup gtx
 ///
-/// Include <glm/gtx/extended_min_max.hpp> to use the features of this extension.
+/// Include <glm/gtx/extented_min_max.hpp> to use the features of this extension.
 ///
 /// Min and max functions for 3 to 4 parameters.
 
@@ -16,10 +16,12 @@
 #include "../glm.hpp"
 #include "../ext/vector_common.hpp"
 
-#ifndef GLM_ENABLE_EXPERIMENTAL
-#	error "GLM: GLM_GTX_extended_min_max is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
-#elif GLM_MESSAGES == GLM_ENABLE && !defined(GLM_EXT_INCLUDED)
-#	pragma message("GLM: GLM_GTX_extended_min_max extension included")
+#if GLM_MESSAGES == GLM_ENABLE && !defined(GLM_EXT_INCLUDED)
+#	ifndef GLM_ENABLE_EXPERIMENTAL
+#		pragma message("GLM: GLM_GTX_extented_min_max is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it.")
+#	else
+#		pragma message("GLM: GLM_GTX_extented_min_max extension included")
+#	endif
 #endif
 
 namespace glm
